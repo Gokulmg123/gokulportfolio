@@ -23,7 +23,8 @@ export default function SideNav() {
 
       // Active section detection
       const sections = navItems.map(item => document.getElementById(item.id));
-      const scrollPos = window.scrollY + window.innerHeight / 2;
+      const scrollPos = window.scrollY + window.innerHeight / 3; // Adjusted offset for better detection
+
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = sections[i];
         if (section && section.offsetTop <= scrollPos) {
@@ -48,12 +49,12 @@ export default function SideNav() {
       <div className="scroll-progress" style={{ width: `${scrollProgress}%` }} />
       <nav className="side-nav" aria-label="Page sections">
         {navItems.map((item, idx) => (
-          <div key={item.id} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0' }}>
+          <div key={item.id} className="side-nav__item-container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             {idx !== 0 && <div className="side-nav__line" />}
             <button
               className={`side-nav__dot ${active === item.id ? 'active' : ''}`}
               onClick={() => scrollTo(item.id)}
-              aria-label={`Navigate to ${item.label}`}
+              aria-label={`Maps to ${item.label}`}
             >
               <span className="side-nav__label">{item.label}</span>
             </button>
