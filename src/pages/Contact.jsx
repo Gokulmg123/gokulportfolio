@@ -44,49 +44,74 @@ export default function Contact() {
 };
 
   useEffect(() => {
+    // FIX: Set initial visibility before ScrollTrigger runs to ensure 
+    // nothing stays hidden if the trigger is late.
+    gsap.set(q('.contact-card, .contact__social, .contact__form-wrapper, .section-label, .section-title, .contact__tagline'), {
+      opacity: 0,
+      y: 20
+    });
+
     let ctx = gsap.context(() => {
       
       // Header text
-      gsap.from(q('.section-label, .section-title'), {
-        y: 40,
-        opacity: 0,
+      gsap.to(q('.section-label, .section-title'), {
+        y: 0,
+        opacity: 1,
         stagger: 0.15,
         duration: 1,
         ease: 'power3.out',
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top 80%',
+          start: 'top 85%',
+          toggleActions: 'play none none none',
+          once: true
         }
       });
 
       // Left Column (Cards)
-      gsap.from(q('.contact__tagline'), {
-        y: 30, opacity: 0, duration: 0.8, ease: 'power3.out',
-        scrollTrigger: { trigger: '.contact__layout', start: 'top 80%' }
+      gsap.to(q('.contact__tagline'), {
+        y: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
+        scrollTrigger: { 
+          trigger: sectionRef.current, 
+          start: 'top 80%',
+          once: true
+        }
       });
 
-      gsap.from(q('.contact-card'), {
-        x: -40, opacity: 0, stagger: 0.1, duration: 0.8, ease: 'power3.out',
-        scrollTrigger: { trigger: '.contact__cards', start: 'top 80%' }
+      gsap.to(q('.contact-card'), {
+        y: 0, opacity: 1, stagger: 0.1, duration: 0.8, ease: 'power3.out',
+        scrollTrigger: { 
+          trigger: '.contact__cards', 
+          start: 'top 85%',
+          once: true
+        }
       });
 
-      gsap.from(q('.contact__social'), {
-        y: 20, opacity: 0, scale: 0.8, stagger: 0.05, duration: 0.6, ease: 'back.out(2)',
-        scrollTrigger: { trigger: '.contact__socials', start: 'top 85%' }
+      gsap.to(q('.contact__social'), {
+        y: 0, opacity: 1, scale: 1, stagger: 0.05, duration: 0.6, ease: 'back.out(2)',
+        scrollTrigger: { 
+          trigger: '.contact__socials', 
+          start: 'top 90%',
+          once: true 
+        }
       });
 
       // Right Column (Form)
-      gsap.from(q('.contact__form-wrapper'), {
-        x: 40,
-        opacity: 0,
+      gsap.to(q('.contact__form-wrapper'), {
+        y: 0,
+        opacity: 1,
         duration: 1,
         ease: 'power3.out',
-        scrollTrigger: { trigger: '.contact__layout', start: 'top 80%' }
+        scrollTrigger: { 
+          trigger: '.contact__layout', 
+          start: 'top 80%',
+          once: true
+        }
       });
 
       // Massive Background Parallax Text
       gsap.to(q('.contact__bg-text'), {
-        y: -150, // moves upward slowly while scrolling down into section
+        y: -150, 
         ease: 'none',
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -98,7 +123,15 @@ export default function Contact() {
 
     }, sectionRef);
 
-    return () => ctx.revert();
+    // FIX: Refresh ScrollTrigger after a short delay to account for dynamic content loading
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 500);
+
+    return () => {
+      ctx.revert();
+      clearTimeout(timer);
+    };
   }, []);
 
   return (

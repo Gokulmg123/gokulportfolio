@@ -17,8 +17,9 @@ export default function BackgroundGlow() {
     window.addEventListener('mousemove', handleMouseMove);
 
     const animate = () => {
-      currentX += (targetX - currentX) * 0.05;
-      currentY += (targetY - currentY) * 0.05;
+      const lerpFactor = window.innerWidth < 768 ? 0.08 : 0.05;
+      currentX += (targetX - currentX) * lerpFactor;
+      currentY += (targetY - currentY) * lerpFactor;
       
       if (glowRef.current) {
         glowRef.current.style.transform = `translate(${currentX}px, ${currentY}px) translate(-50%, -50%)`;
@@ -43,12 +44,13 @@ export default function BackgroundGlow() {
     >
       <div
         ref={glowRef}
+        className="bg-glow-orb"
         style={{
           position: 'absolute',
           top: 0,
           left: 0,
-          width: '600px',
-          height: '600px',
+          width: window.innerWidth < 768 ? '300px' : '600px',
+          height: window.innerWidth < 768 ? '300px' : '600px',
           background: 'radial-gradient(circle, rgba(0,229,255,0.15) 0%, rgba(124,58,237,0.1) 40%, transparent 70%)',
           filter: 'blur(60px)',
           willChange: 'transform',

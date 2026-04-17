@@ -13,7 +13,10 @@
 .section-title,
 .section-label,
 .project-card,
-.skill-card {
+.skill-card,
+.about__showcase-wrapper,
+.contact-card,
+.contact__form-wrapper {
   will-change: transform, opacity;
   transform: translateZ(0);
 }
@@ -23,4 +26,33 @@
   .glass-effect {
     backdrop-filter: none !important;
   }
+}
+
+@media (max-width: 900px) {
+  .contact { 
+    padding-top: 100px;
+    padding-bottom: 120px;
+  }
+  .contact__layout { grid-template-columns: 1fr; gap: 48px; }
+  .contact__form-wrapper { padding: 32px 24px; }
+  .form-row { grid-template-columns: 1fr; }
+  .contact__tagline { text-align: center; margin-bottom: 32px; font-size: 1.1rem; }
+  .contact__cards { align-items: stretch; }
+  .contact__socials { justify-content: center; }
+  .section-title { text-align: center; margin-bottom: 40px !important; }
+  .section-label { justify-content: center; width: 100%; margin-bottom: 12px !important; }
+}
+
+@media (max-width: 480px) {
+  .contact { padding-bottom: 60px; }
+  .contact__form-wrapper { 
+    padding: 24px 16px; 
+    border-radius: 16px;
+  }
+  .contact__bg-text { display: none; }
+  .form-submit { padding: 14px 24px; font-size: 0.9rem; }
+  .contact-card { padding: 16px; gap: 12px; }
+  .contact-card__icon { width: 40px; height: 40px; font-size: 0.9rem; }
+  .contact-card__value { font-size: 0.8rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 200px; }
+  .contact__footer { padding-top: 40px; margin-top: 60px; }
 }
