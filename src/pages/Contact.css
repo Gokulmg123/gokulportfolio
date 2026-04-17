@@ -19,6 +19,7 @@
   position: absolute;
   bottom: -40px;
   left: 50%;
+  z-index: 1;
   transform: translateX(-50%);
   font-family: var(--font-display);
   font-size: clamp(6rem, 18vw, 16rem);
@@ -38,10 +39,13 @@
   grid-template-columns: 1fr 1.2fr;
   gap: 80px;
   align-items: start;
+  z-index: 5;
 }
 
 /* Left */
-.contact__info {}
+.contact__info {
+  position: relative;
+}
 
 .contact__tagline {
   font-family: var(--font-display);
