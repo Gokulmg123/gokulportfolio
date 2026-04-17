@@ -1,0 +1,367 @@
+/* ===== HERO SECTION ===== */
+.hero {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  padding: 120px 0 60px;
+  display: flex;
+  align-items: center;
+  z-index: 1;
+}
+
+/* Glass Card global improvements mapping removed, handled by index.css */
+
+.hero__layout {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* 1. Main Title Card */
+.hero__main-card {
+  padding: 60px 80px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero__greeting {
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.hero__huge-title {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 10vw, 9rem);
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0 0 20px 0;
+  display: flex;
+  align-items: center;
+  text-shadow: 0 4px 20px rgba(255,255,255,0.1);
+}
+
+.hero__o-ring {
+  display: inline-block;
+  margin: 0 4px;
+  filter: drop-shadow(0 0 15px rgba(200, 200, 200, 0.4));
+  animation: slowSpin 20s linear infinite;
+  font-size: 1.1em;
+  line-height: 1;
+}
+
+@keyframes slowSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.hero__desc-new {
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  color: var(--text-secondary);
+  max-width: 800px;
+  line-height: 1.6;
+}
+
+/* 2. Middle Row */
+.hero__middle-row {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 24px;
+}
+
+.hero__skills-card {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+}
+
+.hero__skill-item {
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero__skill-icon {
+  font-size: 1.4rem;
+}
+
+.hero__actions-card {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.hero__actions-top {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn-ai {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 16px 36px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: var(--gradient-primary);
+  color: #fff;
+  box-shadow: 0 0 20px rgba(124,58,237,0.3);
+}
+
+.btn-ai:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(124,58,237,0.5);
+  border-color: rgba(255,255,255,0.4);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 16px 36px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  text-decoration: none;
+}
+
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+  border-color: rgba(255,255,255,0.2);
+}
+
+.hero__socials-glass {
+  display: flex;
+  gap: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 10px 24px;
+  border-radius: 50px;
+  width: fit-content;
+}
+
+.hero__socials-glass a {
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: transparent;
+}
+
+.hero__socials-glass a:hover {
+  color: var(--accent-cyan);
+  background: rgba(255,255,255,0.1);
+  transform: translateY(-2px);
+}
+
+/* 3. Stats Row */
+.hero__stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.hero__stat-card {
+  padding: 32px 24px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero__stat-card::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--card-accent), transparent);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.hero__stat-icon {
+  font-size: 1.5rem;
+  color: var(--card-accent);
+  margin-bottom: 16px;
+}
+
+.hero__stat-val {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.hero__stat-label {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+
+/* AI OVERLAY */
+.hero__assistant {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  overflow: hidden;
+}
+
+.hero__assistant-bg {
+  position: absolute;
+  inset: -20%;
+  background: var(--bg-primary);
+  opacity: 0.95;
+  backdrop-filter: blur(20px);
+  z-index: -1;
+}
+
+.ai-center { width: 320px; height: 320px; margin-bottom: 24px; }
+.ai-lottie { width: 100%; height: 100%; }
+
+.ai-greeting {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.ai-bubbles { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; max-width: 800px; }
+
+.ai-bubble {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 16px 28px;
+  border-radius: 50px;
+  font-weight: 500;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ai-bubble i { color: var(--accent-cyan); }
+.ai-bubble--accent { border-color: rgba(124,58,237,0.3); }
+.ai-bubble--accent i { color: var(--accent-purple); }
+
+.ai-bubble:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-cyan);
+  background: var(--bg-card-hover);
+}
+
+.ai-close {
+  position: absolute; top: 40px; right: 40px;
+  background: transparent; border: none;
+  color: var(--text-secondary);
+  font-size: 0.8rem; text-transform: uppercase;
+  cursor: pointer; display: flex; align-items: center; gap: 8px;
+}
+
+.ai-close:hover { color: var(--text-primary); }
+
+/* ========================
+   GLOWING EDGE UTILS
+========================= */
+.glowing-edge {
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+.glowing-edge-border {
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 2px;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.glowing-edge-border::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  background: conic-gradient(from 0deg, transparent 65%, var(--accent-cyan) 85%, var(--accent-purple) 100%);
+  transform-origin: center;
+  animation: spinBorder 4s linear infinite;
+  translate: -50% -50%;
+}
+
+@keyframes spinBorder {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .hero__middle-row { grid-template-columns: 1fr; }
+  .hero__stats-row { grid-template-columns: 1fr; }
+  .hero__main-card { padding: 40px 24px; }
+  .hero__actions-top { flex-direction: column; width: 100%; }
+  .btn-ai, .btn-outline { width: 100%; justify-content: center; }
+  .hero__socials-glass { width: 100%; justify-content: center; }
+}
+
+@media (max-width: 480px) {
+  .hero { padding-top: 100px; }
+  .ai-center { width: 250px; height: 250px; }
+  .ai-bubbles { flex-direction: column; width: 100%; }
+  .ai-bubble { width: 100%; justify-content: center; }
+  .ai-close { top: 20px; right: 20px; }
+}

@@ -1,0 +1,26 @@
+/* ===== APP.CSS ===== */
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+.app {
+  position: relative;
+}
+/* 🚀 GPU Acceleration */
+.achievement-card,
+.achievement-item,
+.section-title,
+.section-label,
+.project-card,
+.skill-card {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+/* 📱 Reduce heavy effects on mobile */
+@media (max-width: 768px) {
+  .glass-effect {
+    backdrop-filter: none !important;
+  }
+}

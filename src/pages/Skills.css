@@ -1,0 +1,214 @@
+/* ===== SKILLS SECTION CSS ===== */
+.skills {
+  padding: var(--section-padding);
+  position: relative;
+  overflow: hidden;
+}
+
+.skills::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+}
+
+/* Animated floating category label on top */
+.skills__header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+/* Category Tabs */
+.skills__tabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 64px;
+  flex-wrap: wrap;
+}
+
+.skills__tab {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 10px 24px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+.skills__tab:hover,
+.skills__tab.active {
+  background: rgba(0, 245, 255, 0.08);
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+  box-shadow: 0 0 20px rgba(0, 245, 255, 0.1);
+}
+
+/* Skills Grid */
+.skills__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 16px;
+}
+
+.skill-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 28px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  cursor: default;
+  transition: var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.skill-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  border-radius: 20px;
+}
+
+.skill-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  border-color: rgba(0, 245, 255, 0.25);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), var(--glow-cyan);
+}
+
+.skill-card:hover::before {
+  opacity: 1;
+  background: radial-gradient(circle at center, rgba(0, 245, 255, 0.05), transparent 70%);
+}
+
+.skill-card__icon {
+  font-size: 2.6rem;
+  transition: transform 0.4s ease;
+  line-height: 1;
+}
+
+.skill-card:hover .skill-card__icon {
+  transform: scale(1.15) rotate(-5deg);
+}
+
+.skill-card__name {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.03em;
+  transition: color 0.3s ease;
+}
+
+.skill-card:hover .skill-card__name {
+  color: var(--text-primary);
+}
+
+/* Level indicator dots */
+.skill-card__level {
+  display: flex;
+  gap: 4px;
+}
+
+.skill-card__dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--border);
+  transition: background 0.3s ease;
+}
+
+.skill-card__dot.filled {
+  background: var(--accent-cyan);
+  box-shadow: 0 0 6px rgba(0, 245, 255, 0.5);
+}
+
+/* Big skill showcase — marquee */
+.skills__marquee-wrapper {
+  margin-top: 80px;
+  overflow: hidden;
+  position: relative;
+  padding: 24px 0;
+}
+
+.skills__marquee-wrapper::before,
+.skills__marquee-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 120px;
+  z-index: 2;
+}
+
+.skills__marquee-wrapper::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--bg-primary), transparent);
+}
+
+.skills__marquee-wrapper::after {
+  right: 0;
+  background: linear-gradient(270deg, var(--bg-primary), transparent);
+}
+
+.skills__marquee {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  animation: marqueeScroll 30s linear infinite;
+}
+
+.skills__marquee:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.skills__marquee-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  transition: var(--transition-smooth);
+}
+
+.skills__marquee-item:hover {
+  border-color: rgba(0, 245, 255, 0.3);
+  color: var(--text-primary);
+  background: var(--bg-card-hover);
+}
+
+.skills__marquee-item i {
+  font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+  .skills__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .skills__tabs {
+    gap: 8px;
+  }
+}

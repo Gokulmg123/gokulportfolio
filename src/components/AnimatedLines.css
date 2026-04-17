@@ -1,0 +1,56 @@
+/* AnimatedLines.css */
+.animated-lines {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.animated-lines svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Draw-in animation */
+.anim-line {
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  animation: lineDrawIn 2.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  will-change: stroke-dashoffset;
+}
+
+.anim-line--1 { animation-delay: 0.2s; }
+.anim-line--2 { animation-delay: 0.6s; }
+.anim-line--3 { animation-delay: 1.0s; }
+.anim-line--4 { animation-delay: 1.4s; }
+.anim-line--5 { animation-delay: 1.8s; }
+.anim-line--6 {
+  animation-delay: 2.2s;
+  animation-duration: 3.2s;
+}
+
+/* Pulse dots at intersections */
+.anim-line--pulse {
+  stroke-dasharray: none;
+  stroke-dashoffset: 0;
+  opacity: 0;
+  animation: dotPulse 3.5s ease-in-out infinite;
+  animation-delay: 3s;
+}
+
+@keyframes lineDrawIn {
+  0% { stroke-dashoffset: 600; opacity: 0; }
+  5% { opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 1; }
+}
+
+@keyframes dotPulse {
+  0%, 100% { opacity: 0; transform: scale(0.6); }
+  40%, 60% { opacity: 0.9; transform: scale(1); }
+}
+
+@keyframes linePulse {
+  0%, 100% { opacity: 0.06; }
+  50% { opacity: 0.22; }
+}
