@@ -369,25 +369,52 @@
 
 @media (max-width: 480px) {
   .hero { 
-    padding-top: 100px; 
-    padding-bottom: 40px;
+    padding-top: 80px; 
+    padding-bottom: 30px;
     align-items: flex-start;
   }
-  .hero__layout { gap: 16px; }
-  .hero__main-card { padding: 32px 16px; }
-  .hero__greeting { font-size: 1.2rem; }
-  .hero__huge-title { font-size: clamp(3rem, 15vw, 4.5rem); }
-  .hero__desc-new { font-size: 1rem; }
+  .hero__layout { gap: 12px; }
+  .hero__main-card { padding: 24px 16px; min-height: auto; }
+  .hero__greeting { font-size: 1rem; margin-bottom: 4px; }
+  .hero__huge-title { 
+    font-size: clamp(2.5rem, 12vw, 3.8rem); 
+    margin-bottom: 12px;
+  }
+  .hero__o-ring {
+    font-size: 0.9em;
+    margin: 0 2px;
+  }
+  .hero__desc-new { 
+    font-size: 0.9rem; 
+    line-height: 1.5;
+  }
   
-  .hero__skills-card, .hero__actions-card { padding: 24px 16px; }
-  .hero__skill-item { font-size: 1rem; }
+  .hero__skills-card, .hero__actions-card { padding: 20px 16px; }
+  .hero__skill-item { font-size: 0.9rem; gap: 8px; }
+  .hero__skill-icon { font-size: 1.1rem; }
   
-  .hero__stat-card { padding: 20px 16px; }
-  .hero__stat-val { font-size: 1.8rem; }
+  .hero__stat-card { padding: 16px 12px; }
+  .hero__stat-val { font-size: 1.4rem; }
+  .hero__stat-label { font-size: 0.75rem; }
   
-  .ai-center { width: 200px; height: 200px; }
+  .btn-ai, .btn-outline { 
+    padding: 12px 24px; 
+    font-size: 0.9rem; 
+  }
+
+  /* Reduce animation intensity for very small screens */
+  .glowing-edge-border::before {
+    animation-duration: 6s;
+  }
+  
+  .ai-center { width: 180px; height: 180px; }
   .ai-bubbles { flex-direction: column; width: 100%; gap: 12px; }
   .ai-bubble { width: 100%; justify-content: center; padding: 12px 20px; font-size: 0.9rem; }
-  .ai-close { top: 20px; right: 20px; }
-  .ai-greeting { font-size: 1.4rem; margin-bottom: 32px; }
+  .ai-close { top: 15px; right: 15px; font-size: 0.7rem; }
+  .ai-greeting { font-size: 1.2rem; margin-bottom: 24px; }
+}
+
+@media (max-width: 360px) {
+  .hero__huge-title { font-size: 2.4rem; }
+  .hero__desc-new { font-size: 0.85rem; }
 }

@@ -13,10 +13,21 @@ export default function Hero() {
 
   useEffect(() => {
     const q = gsap.utils.selector(heroRef);
-    gsap.set(q('.hero__fade-up'), { y: 40, opacity: 0 });
-    gsap.to(q('.hero__fade-up'), 
-      { y: 0, opacity: 1, duration: 1, stagger: 0.15, ease: 'power3.out', delay: 0.2 }
-    );
+    const isMobile = window.innerWidth < 768;
+    
+    gsap.set(q('.hero__fade-up'), { 
+      y: isMobile ? 15 : 40, 
+      opacity: 0 
+    });
+    
+    gsap.to(q('.hero__fade-up'), { 
+      y: 0, 
+      opacity: 1, 
+      duration: isMobile ? 0.6 : 1, 
+      stagger: 0.15, 
+      ease: 'power3.out', 
+      delay: 0.2 
+    });
   }, []);
 
   const toggleAssistantMode = (turnOn) => {
