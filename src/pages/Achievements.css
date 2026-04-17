@@ -214,17 +214,32 @@
 }
 
 @media (max-width: 768px) {
+  .achievements { padding-top: 100px; }
   .achievements__timeline::before { left: 20px; transform: none; }
   .achievement-item { grid-template-columns: 40px 1fr; }
   .achievement-dot-col { grid-column: 1; grid-row: 1; }
-  .achievement-card { grid-column: 2; text-align: left !important; align-items: flex-start !important; margin: 8px 8px; }
+  .achievement-card { 
+    grid-column: 2; 
+    text-align: left !important; 
+    align-items: flex-start !important; 
+    margin: 8px 8px; 
+    padding: 20px;
+  }
   .achievement-item:nth-child(odd) .achievement-card,
   .achievement-item:nth-child(even) .achievement-card { grid-column: 2; }
-  .achievements__stats { grid-template-columns: repeat(2, 1fr); }
+  .achievements__stats { 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 12px;
+    margin-top: 40px;
+  }
 }
 
 @media (max-width: 480px) {
-  .achievements__stats { grid-template-columns: 1fr; }
+  .achievements__stats { grid-template-columns: repeat(2, 1fr); }
+  .achievement-stat { padding: 24px 12px; }
+  .achievement-stat__value { font-size: 1.8rem; }
+  .achievement-stat__label { font-size: 0.7rem; }
+  .achievements__header { margin-bottom: 40px; }
 }
 /* Hobbies Section */
 .achievements__hobbies {

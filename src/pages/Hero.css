@@ -62,6 +62,12 @@
   to { transform: rotate(360deg); }
 }
 
+@media (max-width: 768px) {
+  .hero__o-ring {
+    animation-duration: 40s; /* Slower spin on mobile */
+  }
+}
+
 .hero__desc-new {
   font-size: clamp(1.1rem, 2vw, 1.4rem);
   color: var(--text-secondary);
@@ -351,7 +357,10 @@
 /* RESPONSIVE */
 @media (max-width: 900px) {
   .hero__middle-row { grid-template-columns: 1fr; }
-  .hero__stats-row { grid-template-columns: 1fr; }
+  .hero__stats-row { 
+    grid-template-columns: 1fr; 
+    gap: 16px;
+  }
   .hero__main-card { padding: 40px 24px; }
   .hero__actions-top { flex-direction: column; width: 100%; }
   .btn-ai, .btn-outline { width: 100%; justify-content: center; }
@@ -359,9 +368,26 @@
 }
 
 @media (max-width: 480px) {
-  .hero { padding-top: 100px; }
-  .ai-center { width: 250px; height: 250px; }
-  .ai-bubbles { flex-direction: column; width: 100%; }
-  .ai-bubble { width: 100%; justify-content: center; }
+  .hero { 
+    padding-top: 100px; 
+    padding-bottom: 40px;
+    align-items: flex-start;
+  }
+  .hero__layout { gap: 16px; }
+  .hero__main-card { padding: 32px 16px; }
+  .hero__greeting { font-size: 1.2rem; }
+  .hero__huge-title { font-size: clamp(3rem, 15vw, 4.5rem); }
+  .hero__desc-new { font-size: 1rem; }
+  
+  .hero__skills-card, .hero__actions-card { padding: 24px 16px; }
+  .hero__skill-item { font-size: 1rem; }
+  
+  .hero__stat-card { padding: 20px 16px; }
+  .hero__stat-val { font-size: 1.8rem; }
+  
+  .ai-center { width: 200px; height: 200px; }
+  .ai-bubbles { flex-direction: column; width: 100%; gap: 12px; }
+  .ai-bubble { width: 100%; justify-content: center; padding: 12px 20px; font-size: 0.9rem; }
   .ai-close { top: 20px; right: 20px; }
+  .ai-greeting { font-size: 1.4rem; margin-bottom: 32px; }
 }

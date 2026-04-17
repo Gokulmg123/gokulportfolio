@@ -273,7 +273,18 @@
 }
 
 @media (max-width: 768px) {
+  .projects { padding-top: 100px; }
   .project-card {
     flex: 0 0 85%;
+    min-width: 280px;
   }
+  .project-card__header { height: 160px; }
+  .projects__grid { gap: 16px; }
+}
+
+@media (max-width: 480px) {
+  .project-card { flex: 0 0 92%; }
+  .project-card__title { font-size: 1.1rem; }
+  .project-card__body { padding: 20px 16px; }
+  .projects__nav { display: none; } /* On mobile, swiping is natural */
 }

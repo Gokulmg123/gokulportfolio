@@ -298,7 +298,18 @@
 }
 
 @media (max-width: 900px) {
+  .contact { padding-top: 100px; }
   .contact__layout { grid-template-columns: 1fr; gap: 48px; }
   .contact__form-wrapper { padding: 32px 24px; }
   .form-row { grid-template-columns: 1fr; }
+  .contact__tagline { text-align: center; margin-bottom: 32px; }
+  .contact__cards { align-items: stretch; }
+  .contact__socials { justify-content: center; }
+}
+
+@media (max-width: 480px) {
+  .contact { padding-bottom: 80px; }
+  .contact__form-wrapper { padding: 24px 16px; }
+  .contact__bg-text { display: none; }
+  .form-submit { padding: 14px 24px; font-size: 0.9rem; }
 }
