@@ -1,4 +1,22 @@
 /* ===== SIDE NAV CSS ===== */
+:root {
+  /* Ensure these are defined in your global CSS, 
+     but adding them here as fallbacks */
+  --side-nav-bg: rgba(0, 0, 0, 0.8);
+  --side-nav-text: var(--text-secondary, #e2e8f0);
+  --side-nav-border: rgba(255, 255, 255, 0.3);
+  --side-nav-dot-inner: rgba(255, 255, 255, 0.3);
+}
+
+/* Light Mode Overrides - Assuming you use a class or data-attribute on body */
+[data-theme='light'], 
+body.light-mode {
+  --side-nav-bg: rgba(255, 255, 255, 0.9);
+  --side-nav-text: #1e293b;
+  --side-nav-border: rgba(0, 0, 0, 0.2);
+  --side-nav-dot-inner: rgba(0, 0, 0, 0.2);
+}
+
 .side-nav {
   position: fixed;
   right: 32px;
@@ -16,7 +34,8 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  /* Use variable for border */
+  border: 1.5px solid var(--side-nav-border);
   background: transparent;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -31,7 +50,7 @@
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
+  background: var(--side-nav-dot-inner);
   transition: all 0.3s ease;
 }
 
@@ -52,20 +71,23 @@
 .side-nav__label {
   position: absolute;
   right: 20px;
-  background: rgba(0, 0, 0, 0.8);
+  /* Adaptive background and text */
+  background: var(--side-nav-bg);
   border: 1px solid var(--border);
-  color: var(--text-secondary);
+  color: var(--side-nav-text);
+  
   font-family: var(--font-mono);
   font-size: 0.65rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  padding: 4px 10px;
+  padding: 6px 12px;
   border-radius: 6px;
   white-space: nowrap;
   opacity: 0;
   pointer-events: none;
   transition: all 0.25s ease;
   backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .side-nav__dot:hover .side-nav__label {
@@ -76,7 +98,8 @@
 .side-nav__line {
   width: 1px;
   height: 20px;
-  background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.15), transparent);
+  /* Adaptive gradient line */
+  background: linear-gradient(to bottom, transparent, var(--side-nav-border), transparent);
 }
 
 /* Scroll progress bar */
