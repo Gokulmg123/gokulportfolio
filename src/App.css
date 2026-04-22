@@ -21,10 +21,14 @@
   transform: translateZ(0);
 }
 
-/* 📱 Reduce heavy effects on mobile */
+/* 📱 Smooth Mobile Enhancements */
 @media (max-width: 768px) {
-  .glass-effect {
-    backdrop-filter: none !important;
+  .section-title {
+    margin-bottom: 30px !important;
+    font-size: 2.2rem !important;
+  }
+  .tech-label {
+    margin-bottom: 16px !important;
   }
 }
 

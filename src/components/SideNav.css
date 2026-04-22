@@ -1,105 +1,81 @@
 /* ===== SIDE NAV CSS ===== */
-:root {
-  /* Ensure these are defined in your global CSS, 
-     but adding them here as fallbacks */
-  --side-nav-bg: rgba(0, 0, 0, 0.8);
-  --side-nav-text: var(--text-secondary, #e2e8f0);
-  --side-nav-border: rgba(255, 255, 255, 0.3);
-  --side-nav-dot-inner: rgba(255, 255, 255, 0.3);
-}
-
-/* Light Mode Overrides - Assuming you use a class or data-attribute on body */
-[data-theme='light'], 
-body.light-mode {
-  --side-nav-bg: rgba(255, 255, 255, 0.9);
-  --side-nav-text: #1e293b;
-  --side-nav-border: rgba(0, 0, 0, 0.2);
-  --side-nav-dot-inner: rgba(0, 0, 0, 0.2);
-}
 
 .side-nav {
   position: fixed;
-  right: 32px;
+  right: 40px;
   top: 50%;
   transform: translateY(-50%);
   z-index: 1000;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
   align-items: center;
 }
 
 .side-nav__dot {
   position: relative;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  /* Use variable for border */
-  border: 1.5px solid var(--side-nav-border);
+  width: 14px;
+  height: 14px;
+  border-radius: 4px; /* Square/Diamond look */
+  border: 1.5px solid var(--border);
   background: transparent;
   cursor: pointer;
-  transition: all 0.3s ease;
-  padding: 0;
+  transition: var(--transition-spring);
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.side-nav__dot::before {
-  content: '';
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: var(--side-nav-dot-inner);
-  transition: all 0.3s ease;
+  padding: 0;
+  outline: none;
 }
 
 .side-nav__dot:hover,
 .side-nav__dot.active {
   border-color: var(--accent-cyan);
-  box-shadow: 0 0 12px rgba(0, 245, 255, 0.5);
-}
-
-.side-nav__dot:hover::before,
-.side-nav__dot.active::before {
   background: var(--accent-cyan);
-  width: 6px;
-  height: 6px;
-  box-shadow: 0 0 8px var(--accent-cyan);
+  box-shadow: var(--glow-cyan);
+  transform: rotate(45deg) scale(1.2); /* Rotating only the base */
 }
 
+/* Fix for tilted label: Counter-rotate the label back to 0deg */
 .side-nav__label {
   position: absolute;
-  right: 20px;
-  /* Adaptive background and text */
-  background: var(--side-nav-bg);
+  right: 28px;
+  background: var(--bg-secondary);
   border: 1px solid var(--border);
-  color: var(--side-nav-text);
-  
+  color: var(--text-primary);
   font-family: var(--font-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.12em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  padding: 6px 12px;
-  border-radius: 6px;
+  padding: 8px 14px;
+  border-radius: 8px;
   white-space: nowrap;
   opacity: 0;
   pointer-events: none;
-  transition: all 0.25s ease;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: var(--transition-spring);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+  /* RE-STRAIGHTEN the label despite parent rotation */
+  transform: rotate(-45deg); 
 }
 
 .side-nav__dot:hover .side-nav__label {
   opacity: 1;
-  right: 24px;
+  right: 36px;
+  /* Keep it straight on hover too */
+  transform: rotate(-45deg) translateY(0); 
+}
+
+.side-nav__dot.active .side-nav__label {
+  color: var(--accent-cyan);
 }
 
 .side-nav__line {
-  width: 1px;
-  height: 20px;
-  /* Adaptive gradient line */
-  background: linear-gradient(to bottom, transparent, var(--side-nav-border), transparent);
+  width: 1.5px;
+  height: 24px;
+  background: linear-gradient(to bottom, transparent, var(--border), transparent);
 }
 
 /* Scroll progress bar */
@@ -107,11 +83,16 @@ body.light-mode {
   position: fixed;
   top: 0;
   left: 0;
-  height: 2px;
+  height: 4px;
   background: var(--gradient-primary);
   z-index: 9999;
-  transition: width 0.1s ease;
-  box-shadow: 0 0 10px var(--accent-cyan);
+  box-shadow: 0 0 15px var(--accent-cyan);
+}
+
+@media (max-width: 900px) {
+  .side-nav {
+    right: 20px;
+  }
 }
 
 @media (max-width: 768px) {

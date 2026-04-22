@@ -50,7 +50,34 @@ function PortfolioApp() {
 
     gsap.ticker.add(raf);
     gsap.ticker.lagSmoothing(0);
-    gsap.ticker.fps(60); // consistent smoothness
+    gsap.ticker.fps(60);
+
+    // ✨ Global Big Text Reveal Animations
+    const bigTexts = document.querySelectorAll('.section-title, .hero__title');
+    bigTexts.forEach((el) => {
+      // Skip if it has rolling letter wrap to avoid double animation/conflict
+      if (el.querySelector('.rolling-letter-wrap')) return;
+
+      const targets = el.children.length > 0 ? el.children : [el];
+      
+      gsap.fromTo(targets, 
+        { y: 100, opacity: 0, skewY: 7, scale: 0.9 },
+        { 
+          y: 0, 
+          opacity: 1, 
+          skewY: 0,
+          scale: 1,
+          duration: 1.6, 
+          stagger: 0.15, 
+          ease: 'expo.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 90%',
+            toggleActions: 'restart none none reverse', // Re-triggers on scroll up/down
+          }
+        }
+      );
+    });
 
     // Cleanup
     return () => {

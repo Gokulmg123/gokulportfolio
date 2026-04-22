@@ -1,290 +1,215 @@
 /* ===== PROJECTS SECTION CSS ===== */
+
 .projects {
   padding: var(--section-padding);
   position: relative;
-  /* FIX: Remove overflow:hidden from the section itself.
-     It was clipping the carousel scroll area AND causing
-     ScrollTrigger to miscalculate trigger positions,
-     which left cards permanently invisible (opacity:0). */
-  overflow: visible;
-}
-
-.projects::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--accent-pink), transparent);
-}
-
-.projects__header {
-  margin-bottom: 0;
+  background: var(--bg-primary);
+  overflow: hidden;
 }
 
 .projects__header-flex {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin-bottom: 40px;
-  flex-wrap: wrap;
+  margin-bottom: 60px;
   gap: 20px;
 }
 
 .projects__nav {
   display: flex;
-  gap: 12px;
+  gap: 15px;
 }
 
 .carousel-btn {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  border: 1px solid var(--border);
+  width: 54px;
+  height: 54px;
+  border-radius: 12px;
+  border: 1.5px solid var(--border);
   background: var(--bg-card);
   color: var(--text-primary);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: var(--transition-smooth);
+  transition: var(--transition-spring);
+  font-size: 1.2rem;
+  backdrop-filter: blur(10px);
 }
 
 .carousel-btn:hover {
-  background: var(--bg-card-hover);
+  background: var(--accent-cyan);
   border-color: var(--accent-cyan);
-  color: var(--accent-cyan);
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0, 229, 255, 0.2);
+  color: white;
+  box-shadow: var(--glow-cyan);
+  transform: translateY(-5px);
 }
 
-/* ── Carousel Wrapper ──
-   FIX: overflow must be hidden here (not on .projects) to clip the scrollable
-   track, but NOT on the outer section (which breaks ScrollTrigger).           */
 .projects__carousel-wrapper {
   position: relative;
   width: 100%;
-  overflow: hidden;   /* clips cards that are outside the visible area */
 }
 
-/* ── Scrollable track ── */
 .projects__grid {
-  display: flex;              /* flex row = cards sit side by side */
-  gap: 24px;
-  overflow-x: auto;           /* enables horizontal scroll */
+  display: flex;
+  gap: 32px;
+  overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
+  padding: 20px 4px 80px;
   -webkit-overflow-scrolling: touch;
-  /* Extra bottom padding so card box-shadows aren't clipped */
-  padding: 10px 4px 40px;
-}
-
-/* Hide the scrollbar visually (still scrollable) */
-.projects__grid::-webkit-scrollbar {
-  display: none;
-}
-.projects__grid {
-  -ms-overflow-style: none;
   scrollbar-width: none;
 }
 
-/* ── Project Cards ── */
-.project-card {
-  flex: 0 0 calc(33.333% - 16px);
-  min-width: 320px;
-  scroll-snap-align: start;
-  background: var(--bg-card);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid var(--border);
-  border-radius: 28px;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  padding-bottom: 8px;
+.projects__grid::-webkit-scrollbar {
+  display: none;
 }
 
-.project-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 0%), rgba(255,255,255,0.03), transparent 40%);
-  z-index: 0;
-  pointer-events: none;
+.project-card {
+  flex: 0 0 calc(33.333% - 22px);
+  min-width: 360px;
+  scroll-snap-align: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  overflow: hidden;
+  transition: var(--transition-smooth);
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(12px);
 }
 
 .project-card:hover {
-  transform: translateY(-10px) scale(1.02);
-  border-color: rgba(0, 229, 255, 0.3);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(0, 229, 255, 0.1);
-  z-index: 2;
+  border-color: var(--accent-cyan);
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.6), var(--glow-cyan);
 }
 
-/* ── Card Header (colour band + icon) ── */
 .project-card__header {
-  height: 200px;
+  height: 240px;
   position: relative;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #7c3aed44, #00e5ff33);
-  border-radius: 20px;
-  margin: 12px 12px 0 12px;
-  border: 1px solid rgba(255,255,255,0.05);
-  z-index: 1;
+  background: var(--bg-secondary);
 }
 
 .project-card__img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1), filter 0.4s ease;
-  filter: brightness(0.85);
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0.85;
 }
 
 .project-card:hover .project-card__img {
-  transform: scale(1.1);
-  filter: brightness(1.1);
+  transform: scale(1.15);
+  opacity: 1;
 }
 
-.project-card__header-overlay {
+.project-card__overlay {
   position: absolute;
   inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(to top, rgba(5, 5, 8, 0.6), transparent);
+  background: linear-gradient(to top, rgba(2, 6, 23, 0.9), transparent);
+  opacity: 0.7;
+  transition: var(--transition-smooth);
 }
 
-.project-card__header-icon {
-  font-size: 3rem;
-  filter: drop-shadow(0 0 15px rgba(123, 47, 255, 0.5));
+.project-card:hover .project-card__overlay {
+  opacity: 0.5;
 }
 
-.project-card__number {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  color: var(--text-muted);
-  background: rgba(0, 0, 0, 0.6);
-  padding: 4px 10px;
-  border-radius: 20px;
-  letter-spacing: 0.1em;
-  backdrop-filter: blur(10px);
-}
-
-/* ── Card Body ── */
 .project-card__body {
-  padding: 24px 24px 16px 24px;
+  padding: 32px;
   flex: 1;
   display: flex;
   flex-direction: column;
-  z-index: 1;
 }
 
 .project-card__title {
   font-family: var(--font-display);
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: 800;
   color: var(--text-primary);
   margin-bottom: 12px;
-  line-height: 1.3;
+  letter-spacing: -0.02em;
 }
 
 .project-card__desc {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: var(--text-secondary);
   line-height: 1.7;
-  margin-bottom: 24px;
-  flex: 1;
+  margin-bottom: 28px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .project-card__tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 24px;
+  gap: 10px;
+  margin-bottom: 28px;
 }
 
 .project-tag {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 600;
+  font-size: 0.75rem;
   padding: 6px 14px;
-  border-radius: 8px;
-  background: rgba(0, 229, 255, 0.08);
-  border: 1px solid rgba(0, 229, 255, 0.2);
+  background: rgba(6, 182, 212, 0.1);
+  border: 1px solid rgba(6, 182, 212, 0.2);
   color: var(--accent-cyan);
-  letter-spacing: 0.05em;
-  transition: all 0.3s ease;
+  border-radius: 8px;
+  transition: var(--transition-smooth);
 }
 
 .project-card:hover .project-tag {
-  background: rgba(0, 229, 255, 0.15);
-  border-color: rgba(0, 229, 255, 0.3);
+  background: rgba(6, 182, 212, 0.2);
+  border-color: var(--accent-cyan);
 }
 
 .project-card__links {
   display: flex;
   gap: 12px;
-  padding-top: 16px;
   margin-top: auto;
-  border-top: 1px dashed rgba(255,255,255,0.1);
 }
 
 .project-card__link {
-  display: inline-flex;
+  flex: 1;
+  display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  font-size: 0.85rem;
-  font-weight: 700;
+  gap: 10px;
+  padding: 14px;
+  background: var(--bg-secondary);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
   color: var(--text-primary);
+  font-family: var(--font-display);
+  font-weight: 600;
   text-decoration: none;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid var(--border);
-  padding: 10px 20px;
-  border-radius: 50px;
-  transition: all 0.3s ease;
-  width: 100%;
+  font-size: 0.9rem;
+  transition: var(--transition-spring);
 }
 
 .project-card__link:hover {
   background: var(--gradient-primary);
+  color: white;
   border-color: transparent;
-  color: #fff;
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3);
 }
 
-/* ── Responsive ── */
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
   .project-card {
-    flex: 0 0 calc(50% - 12px);
+    flex: 0 0 45%;
+  }
+}
+
+@media (max-width: 768px) {
+  .project-card {
+    flex: 0 0 85%;
+    min-width: 300px;
   }
   .projects__header-flex {
     flex-direction: column;
     align-items: flex-start;
   }
-}
-
-@media (max-width: 768px) {
-  .projects { padding-top: 100px; }
-  .project-card {
-    flex: 0 0 85%;
-    min-width: 280px;
-  }
-  .project-card__header { height: 160px; }
-  .projects__grid { gap: 16px; }
-}
-
-@media (max-width: 480px) {
-  .project-card { flex: 0 0 92%; }
-  .project-card__title { font-size: 1.1rem; }
-  .project-card__body { padding: 20px 16px; }
-  .projects__nav { display: none; } /* On mobile, swiping is natural */
 }

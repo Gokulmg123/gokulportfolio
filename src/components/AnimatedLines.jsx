@@ -11,21 +11,21 @@ export default function AnimatedLines() {
         <defs>
           <linearGradient id="lineGradH" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="transparent" />
-            <stop offset="40%" stopColor="var(--accent-cyan)" stopOpacity="0.18" />
+            <stop offset="40%" stopColor="var(--accent-cyan)" stopOpacity="0.15" />
             <stop offset="100%" stopColor="transparent" />
           </linearGradient>
           <linearGradient id="lineGradV" x1="0%" y1="0%" x2="0%" y2="100%">
             <stop offset="0%" stopColor="transparent" />
-            <stop offset="40%" stopColor="var(--accent-purple)" stopOpacity="0.14" />
+            <stop offset="40%" stopColor="var(--accent-blue)" stopOpacity="0.12" />
             <stop offset="100%" stopColor="transparent" />
           </linearGradient>
           <linearGradient id="lineGradD" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor="transparent" />
-            <stop offset="50%" stopColor="var(--accent-cyan)" stopOpacity="0.1" />
+            <stop offset="50%" stopColor="var(--accent-cyan)" stopOpacity="0.08" />
             <stop offset="100%" stopColor="transparent" />
           </linearGradient>
           <filter id="lineBlur">
-            <feGaussianBlur stdDeviation="1.5" />
+            <feGaussianBlur stdDeviation="2" />
           </filter>
         </defs>
 
@@ -43,10 +43,10 @@ export default function AnimatedLines() {
         <line className="anim-line anim-line--6" x1="940" y1="900" x2="1440" y2="200" stroke="url(#lineGradD)" strokeWidth="1" strokeDasharray="1000" strokeDashoffset="1000" style={{ animationDelay: '2.6s' }} />
 
         {/* Pulse circles at intersections */}
-        <circle className="anim-line--pulse" cx="360" cy="200" r="3" fill="var(--accent-cyan)" stroke="none" />
-        <circle className="anim-line--pulse" cx="1080" cy="450" r="3" fill="var(--accent-purple)" stroke="none" style={{ animationDelay: '-2s' }} />
-        <circle className="anim-line--pulse" cx="360" cy="700" r="3" fill="var(--accent-pink)" stroke="none" style={{ animationDelay: '-4s' }} />
-        <circle className="anim-line--pulse" cx="1080" cy="200" r="3" fill="var(--accent-cyan)" stroke="none" style={{ animationDelay: '-1s' }} />
+        <circle className="anim-line--pulse" cx="360" cy="200" r="2" fill="var(--accent-cyan)" stroke="none" />
+        <circle className="anim-line--pulse" cx="1080" cy="450" r="2" fill="var(--accent-blue)" stroke="none" style={{ animationDelay: '-2s' }} />
+        <circle className="anim-line--pulse" cx="360" cy="700" r="2" fill="var(--accent-cyan)" stroke="none" style={{ animationDelay: '-4s' }} />
+        <circle className="anim-line--pulse" cx="1080" cy="200" r="2" fill="var(--accent-blue)" stroke="none" style={{ animationDelay: '-1s' }} />
 
         {/* Corner accent bracket - top left */}
         <path
@@ -62,7 +62,7 @@ export default function AnimatedLines() {
         <path
           className="anim-line anim-line--3"
           d="M 1380 840 L 1380 860 L 1360 860"
-          stroke="var(--accent-purple)"
+          stroke="var(--accent-blue)"
           strokeWidth="1.5"
           strokeDasharray="100"
           strokeDashoffset="100"
