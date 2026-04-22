@@ -1,8 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
 import Lottie from 'lottie-react';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import aiAnimationData from '../assets/AI Robot.json';
 import './Hero.css';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Hero() {
   const heroRef = useRef(null);
@@ -175,34 +178,43 @@ export default function Hero() {
       { y: 0, opacity: 1, stagger: 0.1, duration: 1, ease: 'power3.out', delay: 0.5 }
     );
 
-    // Looping Roll
-    const rollSlot = (slot) => {
-      gsap.fromTo(slot, 
-        { y: '0%' },
-        { 
-          y: '-75%', 
-          duration: 1.5, 
-          ease: 'expo.inOut',
-          repeat: -1, 
-          repeatDelay: 5 + Math.random() * 5 
-        }
-      );
+    // 🎖️ 4. Improved Emoji Slot Logic
+    const spinSlot = (slot) => {
+      // Clear previous animations to prevent conflict
+      gsap.killTweensOf(slot);
+      
+      const tl = gsap.timeline();
+      tl.to(slot, {
+        y: '-75%',
+        duration: 1.5,
+        ease: 'expo.inOut',
+      })
+      .to(slot, {
+        y: '0%',
+        duration: 1,
+        ease: 'power2.inOut',
+        delay: 3 // Stay on an emoji for 3s before returning to alphabet
+      });
     };
 
-    q('.emoji-slot').forEach((slot) => {
-      rollSlot(slot);
-    });
-
-    // Hover re-trigger
-    const wrapElements = q('.rolling-letter-wrap');
-    wrapElements.forEach((wrap) => {
-      const slot = wrap.querySelector('.emoji-slot');
-      wrap.addEventListener('mouseenter', () => {
-        gsap.to(slot, { y: '-75%', duration: 1, ease: 'expo.out' });
+    const slotElements = q('.emoji-slot');
+    slotElements.forEach((slot) => {
+      // Auto-spin on scroll reveal
+      ScrollTrigger.create({
+        trigger: slot,
+        start: "top 85%",
+        onEnter: () => spinSlot(slot),
+        onEnterBack: () => spinSlot(slot),
       });
+
+      // Interactive hover spin
+      const parent = slot.closest('.rolling-letter-wrap');
+      if (parent) {
+        parent.addEventListener('mouseenter', () => spinSlot(slot));
+      }
     });
 
-    // Drift Animation for Binary Bits
+    // 🎖️ 5. Drift Animation for Binary Bits
     q('.binary-bit').forEach((bit) => {
       gsap.to(bit, {
         y: '-120vh',
