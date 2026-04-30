@@ -1,0 +1,119 @@
+.custom-cursor-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.cursor-ring {
+  position: absolute;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-weight: 300;
+  font-size: 1.5rem;
+  color: var(--accent-cyan);
+  opacity: 0.5;
+  transition: width 0.3s ease, height 0.3s ease, color 0.3s ease, opacity 0.3s ease;
+}
+
+.bracket {
+  line-height: 1;
+  text-shadow: 0 0 10px rgba(6, 182, 212, 0.4);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.cursor-ring.hovered {
+  width: 65px;
+  height: 65px;
+  color: var(--accent-purple, #8b5cf6);
+  opacity: 0.9;
+}
+
+.cursor-ring.clicked {
+  width: 35px;
+  height: 35px;
+  color: var(--accent-pink, #f43f5e);
+}
+
+.cursor-ring.hovered .bracket.left {
+  transform: translateX(-5px);
+}
+.cursor-ring.hovered .bracket.right {
+  transform: translateX(5px);
+}
+
+.cursor-dot {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: var(--accent-cyan);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--accent-cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bg-primary, #020617);
+  transition: width 0.2s, height 0.2s, background-color 0.3s, box-shadow 0.3s;
+}
+
+.cursor-dot:has(.cursor-icon) {
+  width: 24px;
+  height: 24px;
+  background: var(--accent-purple, #8b5cf6);
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.6);
+  border-radius: 50%;
+  color: #fff;
+}
+
+.cursor-icon {
+  stroke-width: 2.5px;
+}
+
+.cursor-icon.pulse {
+  animation: pulse-icon 1s infinite alternate;
+}
+
+.cursor-icon.spin {
+  animation: spin-icon 4s linear infinite;
+}
+
+@keyframes pulse-icon {
+  from { transform: scale(0.9); opacity: 0.8; }
+  to { transform: scale(1.1); opacity: 1; }
+}
+
+@keyframes spin-icon {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.cursor-label-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.cursor-label {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--accent-blue, #3b82f6);
+  background: rgba(2, 6, 23, 0.8);
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+  pointer-events: none;
+  white-space: nowrap;
+  backdrop-filter: blur(4px);
+}
+
+@media (max-width: 768px) {
+  .custom-cursor-container { display: none; }
+}

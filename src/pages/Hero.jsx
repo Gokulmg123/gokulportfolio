@@ -3,6 +3,7 @@ import Lottie from 'lottie-react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import aiAnimationData from '../assets/AI Robot.json';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import './Hero.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -26,6 +27,19 @@ export default function Hero() {
       val: Math.random() > 0.5 ? '1' : '0'
     }));
     setBinaryBits(bits);
+  }, []);
+
+  // 01b. Mouse Parallax
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  useEffect(() => {
+    const handleMove = (e) => {
+      setMousePos({
+        x: (e.clientX - window.innerWidth / 2) / 25,
+        y: (e.clientY - window.innerHeight / 2) / 25
+      });
+    };
+    window.addEventListener('mousemove', handleMove);
+    return () => window.removeEventListener('mousemove', handleMove);
   }, []);
 
   // 02. Terminal Simulation
@@ -198,7 +212,7 @@ export default function Hero() {
     };
 
     const slotElements = q('.emoji-slot');
-    slotElements.forEach((slot) => {
+    slotElements.forEach((slot, index) => {
       // Auto-spin on scroll reveal
       ScrollTrigger.create({
         trigger: slot,
@@ -212,6 +226,16 @@ export default function Hero() {
       if (parent) {
         parent.addEventListener('mouseenter', () => spinSlot(slot));
       }
+      
+      // Automatic continuous stagger spin
+      const autoSpin = () => {
+        spinSlot(slot);
+        // Spin again randomly between 6 to 10 seconds later
+        gsap.delayedCall(gsap.utils.random(6, 10), autoSpin);
+      };
+      
+      // Initial trigger staggered per slot
+      gsap.delayedCall(gsap.utils.random(3, 6) + index * 1.5, autoSpin);
     });
 
     // 🎖️ 5. Drift Animation for Binary Bits
@@ -264,9 +288,41 @@ export default function Hero() {
         <div className="hero__light-streak" style={{ top: '20%' }} />
         <div className="hero__light-streak" style={{ top: '60%', animationDelay: '-5s' }} />
         <div className="section-hud--corners" />
-        <div className="hud-bit" style={{ top: '15%', left: '10%' }}>[ SECTOR_01 // ACTIVE ]</div>
-        <div className="hud-bit" style={{ bottom: '20%', right: '15%' }}>[ BUFFER_INIT // 0xAF32 ]</div>
-        <div className="hud-bit" style={{ top: '40%', right: '5%' }}>[ LATENCY // 12ms ]</div>
+        
+        <motion.div 
+          className="hud-bit" 
+          animate={{ x: mousePos.x * 0.5, y: mousePos.y * 0.5 }}
+          style={{ top: '15%', left: '10%' }}
+        >[ SECTOR_01 // ACTIVE ]</motion.div>
+        
+        <motion.div 
+          className="hud-bit" 
+          animate={{ x: mousePos.x * -0.3, y: mousePos.y * -0.3 }}
+          style={{ bottom: '20%', right: '15%' }}
+        >[ BUFFER_INIT // 0xAF32 ]</motion.div>
+        
+        <motion.div 
+          className="hud-bit" 
+          animate={{ x: mousePos.x * 0.8, y: mousePos.y * 0.8 }}
+          style={{ top: '40%', right: '5%' }}
+        >[ LATENCY // 12ms ]</motion.div>
+        
+        <motion.div 
+          className="hud-bit" 
+          animate={{ x: mousePos.x * -0.4, y: mousePos.y * 0.4 }}
+          style={{ top: '70%', left: '5%' }}
+        >[ AI_COGNITION // 98.4% ]</motion.div>
+        
+        <motion.div 
+          className="hud-bit" 
+          animate={{ x: mousePos.x * 0.2, y: mousePos.y * -0.6 }}
+          style={{ bottom: '10%', left: '20%' }}
+        >[ GPU_LOAD // STABLE ]</motion.div>
+        
+        <motion.div 
+          className="radar-circle" 
+          animate={{ x: mousePos.x * 0.2, y: mousePos.y * 0.2 }}
+        />
         <div className="hero__grid-pattern" />
         <div className="scanner-line" />
         
@@ -301,23 +357,29 @@ export default function Hero() {
                 </div>
                 
                 <h1 className="hero__title">
-                  Cr<span className="rolling-letter-wrap">
+                  L<span className="rolling-letter-wrap">
                     <span className="rolling-letter">
-                     <div className="emoji-slot">
-                      <span>a</span>
-  <span>🧠</span><span>
-🔹</span>
-  <span>💡</span>
-</div>
+                      <div className="emoji-slot">
+                        <span>o</span>
+                        <span>🧠</span>
+                        <span>🔹</span>
+                        <span>💡</span>
+                      </div>
                     </span>
-                  </span>fting 
+                  </span>gic Meets 
                   <br />
-                  Digit<span className="rolling-letter-wrap">
-                    <span className="rolling-letter">
-                      <div className="emoji-slot"><span>a</span><span>💻</span><span>🔹</span><span>👾</span></div>
-                    </span>
-                  </span>l 
-                  <span className="title-accent">Vision</span>
+                  <span className="title-accent">
+                    G<span className="rolling-letter-wrap">
+                      <span className="rolling-letter">
+                        <div className="emoji-slot">
+                          <span>a</span>
+                          <span>💻</span>
+                          <span>🔹</span>
+                          <span>👾</span>
+                        </div>
+                      </span>
+                    </span>ming
+                  </span>
                 </h1>
 
                 <p className="hero__description">

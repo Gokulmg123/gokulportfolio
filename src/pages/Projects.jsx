@@ -38,7 +38,7 @@ const projects = [
     title: 'Portfolio Website',
     desc: 'This futuristic portfolio — crafted with React, and a custom dark aesthetic design system with GSAP animations.',
     tags: ['React', 'CSS3', 'GSAP'],
-    img: 'https://cdn.dribbble.com/users/4181802/screenshots/15605658/media/2d8e48231c518290230238127394605e.jpg?compress=1&resize=400x300',
+    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUWQ09qEZe7tquSlCHdu7NciKA_v3-lPHIMw&s',
     github: 'https://github.com/Gokulmg123/portfolio',
   },
   {

@@ -71,6 +71,9 @@
 
   --noise-opacity: 0.1;
   --line-color: rgba(8, 145, 178, 0.08);
+
+  --gradient-primary: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+  --gradient-tech: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
 }
 
 /* ===========================
@@ -313,6 +316,7 @@ body::before {
   justify-content: center;
   font-size: 1em; /* Restore letter size to 1em */
   line-height: 1;
+  
 }
 
 .emoji-slot span:not(:first-child) {

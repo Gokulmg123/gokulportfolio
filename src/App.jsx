@@ -11,6 +11,8 @@ import Skills from './pages/Skills';
 import Projects from './pages/Projects';
 import Achievements from './pages/Achievements';
 import Contact from './pages/Contact';
+import GlobalTechDecor from './components/GlobalTechDecor';
+import CustomCursor from './components/CustomCursor';
 
 // GSAP & Smooth Scroll
 import { gsap } from 'gsap';
@@ -19,8 +21,7 @@ import Lenis from 'lenis';
 
 gsap.registerPlugin(ScrollTrigger);
 
-function PortfolioApp() {
-  useEffect(() => {
+function PortfolioApp() {  useEffect(() => {
     const isMobile = window.innerWidth < 768;
 
     // 🔧 Optimize ScrollTrigger for mobile
@@ -88,10 +89,12 @@ function PortfolioApp() {
 
   return (
     <div className="app">
+      <CustomCursor />
       {/* Global UI */}
       <AnimatedLines />
       <SideNav />
       <ThemeToggle />
+      <GlobalTechDecor />
 
       {/* Main Sections */}
       <main id="smooth-wrapper">
